@@ -1,5 +1,5 @@
 # BrowserTools
-![Static Badge](https://img.shields.io/badge/Platforms-iOS%2016%2B%20%7C%20macOS%2013%2B%20%7C%20visionOS-h)
+![Static Badge](https://img.shields.io/badge/Platforms-iOS%2017%2B%20%7C%20macOS%2014%2B%20%7C%20visionOS-h)
 
 BrowserTools provides a few basic browser/web related functions such as simplified url formatting and favicon loading from a url.
 
