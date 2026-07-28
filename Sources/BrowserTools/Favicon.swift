@@ -18,9 +18,9 @@ import Kingfisher
 ///     - size: The width and height the favicon should be displayed as.
 ///     - shape: The clip shape for the favicon to use.
 public struct Favicon: View {
-    @State var url: String
-    @State var size: CGFloat
-    @State var shape: AnyShape?
+    @State public var url: String
+    @State public var size: CGFloat
+    @State public var shape: AnyShape?
     
     public var body: some View {
         KFImage(
