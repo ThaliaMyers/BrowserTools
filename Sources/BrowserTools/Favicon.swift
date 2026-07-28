@@ -18,21 +18,30 @@ import Kingfisher
 ///     - size: The width and height the favicon should be displayed as.
 ///     - shape: The clip shape for the favicon to use.
 public struct Favicon: View {
-    @State public var url: String
-    @State public var size: CGFloat
-    @State public var shape: AnyShape?
-    
+    private let url: String
+    private let size: CGFloat
+    private let shape: AnyShape
+
+    public init(url: String, size: CGFloat, shape: AnyShape? = nil) {
+        self.url = url
+        self.size = size
+        self.shape = shape ?? AnyShape(Circle())
+    }
+
+    private var faviconURL: URL? {
+        var components = URLComponents(string: "https://www.google.com/s2/favicons")
+        components?.queryItems = [
+            URLQueryItem(name: "domain", value: url),
+            URLQueryItem(name: "sz", value: "128")
+        ]
+        return components?.url
+    }
+
     public var body: some View {
-        KFImage(
-            URL(
-                string: "https://www.google.com/s2/favicons?domain=\(url)&sz=\(128)"
-                    .replacingOccurrences(of: "https://www.google.com/s2/favicons?domain=Optional(", with: "https://www.google.com/s2/favicons?domain=")
-                    .replacingOccurrences(of: ")&sz=", with: "&sz=").replacingOccurrences(of: "\"", with: "")
-            )
-        )
-        .resizable()
-        .scaledToFit()
-        .frame(width: size, height: size)
-        .clipShape(shape ?? AnyShape(Circle()))
+        KFImage(faviconURL)
+            .resizable()
+            .scaledToFit()
+            .frame(width: size, height: size)
+            .clipShape(shape)
     }
 }
